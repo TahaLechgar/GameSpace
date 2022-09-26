@@ -7,7 +7,6 @@ public class Poste {
 
     public static int postesNumber = 0;
     public static ArrayList<Poste> allPostes = new ArrayList<>();
-
     private final int id;
     private String type;
     private String monitor;

@@ -29,43 +29,40 @@ public class Main {
         Display display = new Display();
 
 
-//         if(!DateManagement.checkTime()){
-//             System.out.println("GameSpace is out of service");
-//             System.exit(0);
-//         }
-
-         display.menu();
-
-        String choice = scanner.nextLine();
-
-        while(!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("0")){
-            choice = scanner.nextLine();
+        if(!DateManagement.checkTime()){
+            System.out.println("GameSpace is out of service");
+            System.exit(0);
         }
 
-        switch(choice){
-            case "0":
-                break;
-            case "1":
-                String playerName   = display.enterPlayerData();
-                String gameChoice   = display.chooseGame();
-                Poste chosenPoste   = display.choosePoste(gameChoice);
-                int availableHours  = display.availableHoursForPosteChosen(chosenPoste);
-                int duration        = display.chooseDuration(availableHours);
-                Player instance = new Player(gameChoice, playerName, duration, chosenPoste);
-                if(GameSpaceQueue.checkPosteAvailability(chosenPoste) == null){
-                    GameSpaceQueue.playing.add(instance);
-                }else{
-                    GameSpaceQueue.playersQueue.add(instance);
+        while(true){
+            boolean exit = false;
+            display.menu();
+
+            String choice = scanner.nextLine();
+
+            while(!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("0")){
+                choice = scanner.nextLine();
+            }
+
+            switch (choice) {
+                case "1" -> {
+                    String playerName = display.enterPlayerData();
+                    String gameChoice = display.chooseGame();
+                    Poste chosenPoste = display.choosePoste(gameChoice);
+                    int availableHours = display.availableHoursForPosteChosen(chosenPoste);
+                    int duration = display.chooseDuration(availableHours);
+                    Player instance = new Player(gameChoice, playerName, duration, chosenPoste);
+                    if (GameSpaceQueue.checkPosteAvailability(chosenPoste) == null) {
+                        GameSpaceQueue.playing.add(instance);
+                    } else {
+                        GameSpaceQueue.playersQueue.addLast(instance);
+                    }
                 }
-                break;
-
-            case "2" :
-                System.out.println(2);
-                break;
-
-            case "3" :
-                System.out.println(3);
-                break;
+                case "2" -> System.out.println(2);
+                case "3" -> System.out.println(3);
+                case "0" -> exit = true;
+            }
+            if(exit) break;
         }
     }
 
