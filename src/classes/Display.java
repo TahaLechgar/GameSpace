@@ -20,7 +20,7 @@ public class Display {
     }
 
     public String enterPlayerData(){
-        System.out.println("Enter firstname and lastname : \n");
+        System.out.println("Enter a player name : \n");
         return scanner.nextLine();
     }
 
@@ -54,7 +54,7 @@ public class Display {
     }
 
     public int availableHoursForPosteChosen(Poste poste){
-        Player instance = GameSpaceQueue.checkPosteAvailability(poste);
+        Reservation instance = GameSpaceQueue.checkPosteAvailability(poste);
         String availability = (instance == null) ? null : instance.getAvailableAt();
         int availableHours = DateManagement.availableHours(availability);
         System.out.println("available hours : " + availableHours);
@@ -82,7 +82,7 @@ public class Display {
 
         for(Poste poste: possiblePostes){
             String status ;
-            Player instance = GameSpaceQueue.checkPosteAvailability(poste);
+            Reservation instance = GameSpaceQueue.checkPosteAvailability(poste);
             if(instance == null){
                 status = " Available";
             }

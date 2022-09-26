@@ -1,7 +1,7 @@
 package classes;
 
 
-public class Player {
+public class Reservation {
 
     private String game;
     private String playerName;
@@ -10,7 +10,7 @@ public class Player {
     private String availableAt;
 
 
-    public Player(String game, String playerName, int duration, Poste poste ) {
+    public Reservation(String game, String playerName, int duration, Poste poste ) {
         this.game = game;
         this.playerName = playerName;
         this.duration = duration;

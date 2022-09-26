@@ -1,5 +1,4 @@
 import classes.*;
-import enums.Duration;
 import enums.Games;
 
 import java.time.LocalTime;
@@ -18,10 +17,10 @@ public class Main {
         Poste p2 = new Poste("PS5", "Samsung", String.valueOf(Games.AssassinsCreed), String.valueOf(Games.PES));
         System.out.println(p1);
 
-        LinkedList<Player> playersQueue = new LinkedList<>();
-        playersQueue.addLast(new Player(String.valueOf(Games.FIFA) , "Taha Lechgar", 1, null));
-        playersQueue.addLast(new Player(String.valueOf(Games.PES), "Thomas Edison", 2, null));
-        GameSpaceQueue.playing.add(new Player(String.valueOf(Games.FIFA) , "Taha Lechgar", 2, p1));
+        LinkedList<Reservation> playersQueue = new LinkedList<>();
+        GameSpaceQueue.playersQueue.addLast(new Reservation(String.valueOf(Games.FIFA) , "Taha Lechgar", 1, p1));
+        GameSpaceQueue.playersQueue.addLast(new Reservation(String.valueOf(Games.PES), "Thomas Edison", 2, p2));
+        GameSpaceQueue.playing.add(new Reservation(String.valueOf(Games.FIFA) , "Taha Lechgar", 2, p1));
         System.out.println(playersQueue);
         System.out.println(LocalTime.now().getHour());
         System.out.println(LocalTime.now().getMinute());
@@ -51,14 +50,23 @@ public class Main {
                     Poste chosenPoste = display.choosePoste(gameChoice);
                     int availableHours = display.availableHoursForPosteChosen(chosenPoste);
                     int duration = display.chooseDuration(availableHours);
-                    Player instance = new Player(gameChoice, playerName, duration, chosenPoste);
+                    Reservation instance = new Reservation(gameChoice, playerName, duration, chosenPoste);
                     if (GameSpaceQueue.checkPosteAvailability(chosenPoste) == null) {
                         GameSpaceQueue.playing.add(instance);
                     } else {
                         GameSpaceQueue.playersQueue.addLast(instance);
                     }
                 }
-                case "2" -> System.out.println(2);
+                case "2" -> {
+                    System.out.println("Queue:");
+                    for(Reservation instance: GameSpaceQueue.playersQueue){
+                        System.out.println(instance);
+                    }
+                    System.out.println("Playing");
+                    for(Reservation instance: GameSpaceQueue.playing){
+                        System.out.println(instance);
+                    }
+                }
                 case "3" -> System.out.println(3);
                 case "0" -> exit = true;
             }
@@ -102,7 +110,7 @@ public class Main {
 
         for(Poste poste: possiblePostes){
             String status ;
-            Player instance = GameSpaceQueue.checkPosteAvailability(poste);
+            Reservation instance = GameSpaceQueue.checkPosteAvailability(poste);
             if(instance == null){
                 status = " Available";
             }
@@ -117,7 +125,7 @@ public class Main {
         } while (!possiblePostesIds.contains(posteChoice));
 
         Poste posteChosen = Poste.getPosteById(posteChoice);
-        Player instance = GameSpaceQueue.checkPosteAvailability(posteChosen);
+        Reservation instance = GameSpaceQueue.checkPosteAvailability(posteChosen);
         String availability = (instance == null) ? null : instance.getAvailableAt();
         int availableHoursForChosenPoste = DateManagement.availableHours(availability);
         System.out.println("available hours : " + availableHoursForChosenPoste);
