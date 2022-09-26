@@ -15,6 +15,7 @@ public class Reservation {
         this.playerName = playerName;
         this.duration = duration;
         this.poste = poste;
+
     }
 
     // Getters

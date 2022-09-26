@@ -13,6 +13,7 @@ public class Main {
             System.out.println("GameSpace is out of service");
             System.exit(0);
         }
+        
 
         Display display = new Display();
 

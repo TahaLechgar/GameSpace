@@ -46,6 +46,7 @@ public class Display {
                 String.valueOf(Games.SuperMario),
                 String.valueOf(Games.PES));
 
+        GameSpaceQueue.playing.add(new Reservation("FIFA", "taha", 1, p1));
     }
 
     public void menu(){
