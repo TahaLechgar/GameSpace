@@ -3,13 +3,11 @@ package classes;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.Date;
 
 public class DateManagement {
 
     public static boolean checkTime(){
-//       String currentTime =  c
        int hour = LocalTime.now().getHour();
        return hour >= 9 && hour <= 11 || hour >= 14 && hour <= 19;
     }
@@ -39,9 +37,10 @@ public class DateManagement {
         }
         int availableHours = 20 - Integer.parseInt(hm[0]);
 
-        if(Integer.parseInt(hm[1]) < 30){
-            availableHours++;
+        if(Integer.parseInt(hm[0]) == 19 && Integer.parseInt(hm[1]) > 30){
+            availableHours = 0;
         }
+
         return availableHours;
     }
 }
