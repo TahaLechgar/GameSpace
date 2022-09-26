@@ -54,7 +54,7 @@ public class Display {
     }
 
     public int availableHoursForPosteChosen(Poste poste){
-        Reservation instance = GameSpaceQueue.checkPosteAvailability(poste);
+        Reservation instance = GameSpaceQueue.getLastReservationForGivenPoste(poste);
         String availability = (instance == null) ? null : instance.getAvailableAt();
         int availableHours = DateManagement.availableHours(availability);
         System.out.println("available hours : " + availableHours);
@@ -82,7 +82,7 @@ public class Display {
 
         for(Poste poste: possiblePostes){
             String status ;
-            Reservation instance = GameSpaceQueue.checkPosteAvailability(poste);
+            Reservation instance = GameSpaceQueue.getLastReservationForGivenPoste(poste);
             if(instance == null){
                 status = " Available";
             }

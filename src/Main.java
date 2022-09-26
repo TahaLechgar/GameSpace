@@ -15,15 +15,9 @@ public class Main {
 
         Poste p1 = new Poste("PS5", "Samsung", String.valueOf(Games.FIFA), String.valueOf(Games.PES));
         Poste p2 = new Poste("PS5", "Samsung", String.valueOf(Games.AssassinsCreed), String.valueOf(Games.PES));
-        System.out.println(p1);
 
         LinkedList<Reservation> playersQueue = new LinkedList<>();
-        GameSpaceQueue.playersQueue.addLast(new Reservation(String.valueOf(Games.FIFA) , "Taha Lechgar", 1, p1));
-        GameSpaceQueue.playersQueue.addLast(new Reservation(String.valueOf(Games.PES), "Thomas Edison", 2, p2));
-        GameSpaceQueue.playing.add(new Reservation(String.valueOf(Games.FIFA) , "Taha Lechgar", 2, p1));
-        System.out.println(playersQueue);
-        System.out.println(LocalTime.now().getHour());
-        System.out.println(LocalTime.now().getMinute());
+
 
         Display display = new Display();
 
@@ -50,10 +44,16 @@ public class Main {
                     Poste chosenPoste = display.choosePoste(gameChoice);
                     int availableHours = display.availableHoursForPosteChosen(chosenPoste);
                     int duration = display.chooseDuration(availableHours);
+
                     Reservation instance = new Reservation(gameChoice, playerName, duration, chosenPoste);
-                    if (GameSpaceQueue.checkPosteAvailability(chosenPoste) == null) {
+                    Reservation posteAvailability = GameSpaceQueue.checkPosteAvailability(chosenPoste);
+                    if (posteAvailability == null) {
+                        String availableAt = DateManagement.getAvailableAt(null, duration);
+                        instance.setAvailableAt(availableAt);
                         GameSpaceQueue.playing.add(instance);
                     } else {
+                        String availableAt = DateManagement.getAvailableAt(posteAvailability.getAvailableAt(), duration);
+                        instance.setAvailableAt(availableAt);
                         GameSpaceQueue.playersQueue.addLast(instance);
                     }
                 }

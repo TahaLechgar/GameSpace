@@ -14,6 +14,15 @@ public class DateManagement {
        return hour >= 9 && hour <= 11 || hour >= 14 && hour <= 19;
     }
 
+    public static String getAvailableAt(String hour, int duration){
+        if(hour == null)
+            hour =  new SimpleDateFormat("HH:mm").format(new Timestamp(new Date().getTime()));
+
+        String[] hm = hour.split(":", 0);
+        hm[0] = String.valueOf(Integer.parseInt(hm[0]) + duration);
+        return String.join(":", hm);
+    }
+
     public static int availableHours(String hour){
         if(hour == null){
             hour =  new SimpleDateFormat("HH:mm").format(new Timestamp(new Date().getTime()));

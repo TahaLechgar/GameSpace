@@ -15,7 +15,7 @@ public class Reservation {
         this.playerName = playerName;
         this.duration = duration;
         this.poste = poste;
-        availableAt = "18:30";
+//        this.availableAt = availableAt;
     }
 
     // Getters

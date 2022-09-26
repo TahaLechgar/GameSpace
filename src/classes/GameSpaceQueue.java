@@ -22,14 +22,16 @@ public class GameSpaceQueue {
     }
 
     public static Reservation getLastReservationForGivenPoste(Poste poste){
-        if(checkPosteAvailability(poste) == null)
+        Reservation posteState = checkPosteAvailability(poste);
+        if(posteState == null)
             return null;
 
-        for (Reservation reservation : playersQueue) {
-            System.out.println(reservation);
+        for (Reservation instance : playersQueue) {
+            if(poste.getId() == instance.getPoste().getId()){
+                return instance;
+            }
         }
-        return null;
-
+        return posteState;
     }
 
 }
