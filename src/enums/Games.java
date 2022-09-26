@@ -5,6 +5,7 @@ public enum Games {
     PES,
     AssassinsCreed,
     CallOfDuty,
-    GodOfWar
+    GodOfWar,
+    SuperMario
 
 }

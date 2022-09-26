@@ -19,7 +19,12 @@ public class DateManagement {
             hour =  new SimpleDateFormat("HH:mm").format(new Timestamp(new Date().getTime()));
 
         String[] hm = hour.split(":", 0);
-        hm[0] = String.valueOf(Integer.parseInt(hm[0]) + duration);
+        int newTime = Integer.parseInt(hm[0]) + duration;
+        if(Integer.parseInt(hm[0]) <= 12 && newTime >= 12 ){
+            newTime+=2;
+        }
+
+        hm[0] = String.valueOf(newTime);
         return String.join(":", hm);
     }
 

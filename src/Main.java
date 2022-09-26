@@ -1,9 +1,5 @@
 import classes.*;
-import enums.Games;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -12,10 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        if(!DateManagement.checkTime()){
-            System.out.println("GameSpace is out of service");
-            System.exit(0);
-        }
+//        if(!DateManagement.checkTime()){
+//            System.out.println("GameSpace is out of service");
+//            System.exit(0);
+//        }
 
         Display display = new Display();
 
