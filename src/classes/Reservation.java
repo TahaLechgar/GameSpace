@@ -61,7 +61,7 @@ public class Reservation {
     }
 
     public String toString(){
-        return   this.game + " | " + this.playerName + " | " + this.duration;
+        return   this.game + " | " + this.playerName + " | " + this.duration + " hours | poste : " + this.poste.getId() ;
     }
 
 }
