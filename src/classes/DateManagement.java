@@ -3,7 +3,12 @@ package classes;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class DateManagement {
 
@@ -40,7 +45,28 @@ public class DateManagement {
         if(Integer.parseInt(hm[0]) == 19 && Integer.parseInt(hm[1]) > 30){
             availableHours = 0;
         }
-
         return availableHours;
     }
+
+    public static void timer(String time, Poste poste){
+        String[] hm = time.split(":");
+        long delay = ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.of(Integer.parseInt(hm[0]), Integer.parseInt(hm[1]), 0));
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.schedule(new MyTimeTask(poste), delay, TimeUnit.MILLISECONDS);
+    }
+
+    private static class MyTimeTask extends TimerTask
+    {
+
+        private final Poste poste;
+
+        public MyTimeTask(Poste poste){
+            this.poste = poste;
+        }
+        public void run()
+        {
+            System.out.println(poste);
+        }
+    }
+
 }

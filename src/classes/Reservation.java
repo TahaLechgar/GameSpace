@@ -15,7 +15,6 @@ public class Reservation {
         this.playerName = playerName;
         this.duration = duration;
         this.poste = poste;
-//        this.availableAt = availableAt;
     }
 
     // Getters
@@ -58,6 +57,7 @@ public class Reservation {
 
     public void setAvailableAt(String availableAt) {
         this.availableAt = availableAt;
+        DateManagement.timer(availableAt, this.poste);
     }
 
     public String toString(){
