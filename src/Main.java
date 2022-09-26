@@ -12,20 +12,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        Poste p1 = new Poste("PS5", "Samsung", String.valueOf(Games.FIFA), String.valueOf(Games.PES));
-        Poste p2 = new Poste("PS5", "Samsung", String.valueOf(Games.AssassinsCreed), String.valueOf(Games.PES));
-
-        LinkedList<Reservation> playersQueue = new LinkedList<>();
-
-
-        Display display = new Display();
-
-
         if(!DateManagement.checkTime()){
             System.out.println("GameSpace is out of service");
             System.exit(0);
         }
+
+        Display display = new Display();
+
+        display.setupPostes();
 
         while(true){
             boolean exit = false;

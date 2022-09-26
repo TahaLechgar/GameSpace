@@ -9,6 +9,37 @@ public class Display {
 
     public Scanner scanner = new Scanner(System.in);
 
+    public void setupPostes(){
+
+        Poste p1 = new Poste("PS5", "Samsung",
+                String.valueOf(Games.FIFA),
+                String.valueOf(Games.PES));
+        Poste p2 = new Poste("PS5", "Dell",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p3 = new Poste("PS5", "HP",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p4 = new Poste("XBOX", "Asus",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p5 = new Poste("XBOX", "Asus",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p6 = new Poste("XBOX", "Dell",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p7 = new Poste("XBOX", "Samsung",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p8 = new Poste("NintendoSwitch", "Dell",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+        Poste p9 = new Poste("NintendoSwitch", "Asus",
+                String.valueOf(Games.AssassinsCreed),
+                String.valueOf(Games.PES));
+
+    }
 
     public void menu(){
         System.out.println("----- Welcome to GameSpace -----");
