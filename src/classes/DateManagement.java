@@ -45,6 +45,7 @@ public class DateManagement {
         if(Integer.parseInt(hm[0]) == 19 && Integer.parseInt(hm[1]) > 30){
             availableHours = 0;
         }
+
         return availableHours;
     }
 
@@ -65,7 +66,7 @@ public class DateManagement {
         }
         public void run()
         {
-            System.out.println(poste);
+            GameSpaceQueue.moveReservationFromQueueToPlaying(poste);
         }
     }
 

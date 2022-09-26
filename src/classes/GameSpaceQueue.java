@@ -26,12 +26,43 @@ public class GameSpaceQueue {
         if(posteState == null)
             return null;
 
+        Iterator<Reservation> x = playersQueue.descendingIterator();
+
+        // print list with descending order
+        while (x.hasNext()) {
+            Reservation instance = x.next();
+            if(poste.getId() == instance.getPoste().getId()){
+                System.out.println(instance);
+                return instance;
+            }
+        }
+
+        return posteState;
+    }
+
+    public static Reservation getFirstReservationForGivenPoste(Poste poste){
+        Reservation posteState = checkPosteAvailability(poste);
+        if(posteState == null)
+            return null;
+
         for (Reservation instance : playersQueue) {
             if(poste.getId() == instance.getPoste().getId()){
+                System.out.println(instance);
                 return instance;
             }
         }
         return posteState;
+    }
+
+    public static void moveReservationFromQueueToPlaying(Poste poste){
+
+        for (Reservation instance : playersQueue) {
+            if(poste.getId() == instance.getPoste().getId()){
+                playing.removeIf(reservation -> reservation.getPoste().getId() == instance.getPoste().getId());
+                playing.add(instance);
+                playersQueue.remove(instance);
+            }
+        }
     }
 
 }
