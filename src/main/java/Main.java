@@ -1,5 +1,6 @@
 import classes.*;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -68,7 +69,10 @@ public class Main {
                         System.out.println(instance);
                     }
                 }
-                case "3" -> System.out.println(3);
+                case "3" ->{
+                    System.out.println("Your Monthly income is : " + MonthlyIncome.getMonthlyIncome(String.valueOf(LocalDate.now().getMonth())));
+                    System.out.println("");
+                }
                 case "0" -> exit = true;
             }
             if(exit) break;

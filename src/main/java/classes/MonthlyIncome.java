@@ -3,6 +3,7 @@ package classes;
 import com.github.cliftonlabs.json_simple.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MonthlyIncome {
 
@@ -24,5 +25,14 @@ public class MonthlyIncome {
         String month = (String) jsonObject.get("month");
         int income = Integer.parseInt(String.valueOf(jsonObject.get("pricePaid"))) ;
         return new MonthlyIncome(month, income);
+    }
+
+    public static int getMonthlyIncome(String month){
+        int income = 0;
+        for(MonthlyIncome monthlyIncome: allTimeReservations){
+            if(Objects.equals(monthlyIncome.getMonth(), month))
+                income+=monthlyIncome.getIncome();
+        }
+        return income;
     }
 }
