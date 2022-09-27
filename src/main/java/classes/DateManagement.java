@@ -22,7 +22,16 @@ public class DateManagement {
             hour =  new SimpleDateFormat("HH:mm").format(new Timestamp(new Date().getTime()));
 
         String[] hm = hour.split(":", 0);
+
         int newTime = Integer.parseInt(hm[0]) + duration;
+        if(duration == 0){
+            if((Integer.parseInt(hm[1])>=30)){
+                newTime++;
+                hm[1] = String.valueOf(Integer.parseInt(hm[1]) - 30);
+            }else{
+                hm[1] = String.valueOf(Integer.parseInt(hm[1]) + 30);
+            }
+        }
         if(Integer.parseInt(hm[0]) <= 12 && newTime >= 12 ){
             newTime+=2;
         }
@@ -58,7 +67,6 @@ public class DateManagement {
 
     private static class MyTimeTask extends TimerTask
     {
-
         private final Poste poste;
 
         public MyTimeTask(Poste poste){

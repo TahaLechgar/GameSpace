@@ -46,7 +46,12 @@ public class Display {
                 String.valueOf(Games.SuperMario),
                 String.valueOf(Games.PES));
 
-        GameSpaceQueue.playing.add(new Reservation("FIFA", "taha", 1, p1));
+        TimeSlot.timeSlots.add(new TimeSlot(30, 5));
+        TimeSlot.timeSlots.add(new TimeSlot(1, 10));
+        TimeSlot.timeSlots.add(new TimeSlot(2, 18));
+        TimeSlot.timeSlots.add(new TimeSlot(5, 40));
+        TimeSlot.timeSlots.add(new TimeSlot(0, 65));
+
     }
 
     public void menu(){
@@ -101,6 +106,13 @@ public class Display {
             if(i == 0) {
                 System.out.println("30 minute");
                 continue;
+            }
+            if(i == 3 || i == 4){
+                continue;
+            }
+            if(i > 5){
+                System.out.println("joueur de luxe.");
+                break;
             }
             System.out.println(i + " heure");
         }

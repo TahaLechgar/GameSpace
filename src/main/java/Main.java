@@ -9,15 +9,19 @@ public class Main {
     public static void main(String[] args) {
 
 
-        if(!DateManagement.checkTime()){
-            System.out.println("GameSpace is out of service");
-            System.exit(0);
-        }
+//        if(!DateManagement.checkTime()){
+//            System.out.println("GameSpace is out of service");
+//            System.exit(0);
+//        }
         
 
         Display display = new Display();
 
         display.setupPostes();
+        Statistics.load();
+        for (MonthlyIncome mi: MonthlyIncome.allTimeReservations){
+            System.out.println(mi.getIncome() + " " + mi.getMonth());
+        }
 
         while(true){
             boolean exit = false;
@@ -43,6 +47,8 @@ public class Main {
                         String availableAt = DateManagement.getAvailableAt(null, duration);
                         instance.setAvailableAt(availableAt);
                         GameSpaceQueue.playing.add(instance);
+                        GameSpaceQueue.allTimeReservations.add(instance);
+                        Statistics.save();
                     } else {
                         String availableAt = DateManagement.getAvailableAt(posteAvailability.getAvailableAt(), duration);
                         instance.setAvailableAt(availableAt);

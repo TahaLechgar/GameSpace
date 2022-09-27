@@ -3,6 +3,8 @@ package classes;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
 public class Poste {
 
     public static int postesNumber = 0;

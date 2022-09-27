@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 public class GameSpaceQueue {
 
+    public static ArrayList<Reservation> allTimeReservations = new ArrayList<>();
     public static ArrayList<Reservation> playing = new ArrayList<>();
     public static LinkedList<Reservation> playersQueue = new LinkedList<>();
 
@@ -60,6 +61,8 @@ public class GameSpaceQueue {
             if(poste.getId() == instance.getPoste().getId()){
                 playing.removeIf(reservation -> reservation.getPoste().getId() == instance.getPoste().getId());
                 playing.add(instance);
+                allTimeReservations.add(instance);
+                Statistics.save();
                 playersQueue.remove(instance);
             }
         }
