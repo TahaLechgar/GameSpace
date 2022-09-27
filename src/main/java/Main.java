@@ -40,6 +40,9 @@ public class Main {
                     Poste chosenPoste = display.choosePoste(gameChoice);
                     int availableHours = display.availableHoursForPosteChosen(chosenPoste);
                     int duration = display.chooseDuration(availableHours);
+                    if(duration == -1){
+                        break;
+                    }
 
                     Reservation instance = new Reservation(gameChoice, playerName, duration, chosenPoste);
                     Reservation posteAvailability = GameSpaceQueue.checkPosteAvailability(chosenPoste);

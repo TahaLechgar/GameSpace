@@ -101,7 +101,7 @@ public class Display {
         Reservation instance = GameSpaceQueue.getLastReservationForGivenPoste(poste);
         String availability = (instance == null) ? null : instance.getAvailableAt();
         int availableHours = DateManagement.availableHours(availability);
-        System.out.println("available hours : " + availableHours);
+//        System.out.println("available hours : " + availableHours);
         for(int i = 0; i < availableHours; i++){
             if(i == 0) {
                 System.out.println("30 minute");
@@ -120,6 +120,10 @@ public class Display {
     }
 
     public int chooseDuration(int availableHours){
+        if(availableHours <= 0){
+            System.out.println("Sorry this poste will not be available today.");
+            return -1;
+        }
         System.out.println("choose a duration");
         int durationChoice = Integer.parseInt(scanner.nextLine());
         while(durationChoice > availableHours){
